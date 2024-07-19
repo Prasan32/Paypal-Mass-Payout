@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PayPal Mass Payout</title>
+</head>
+
+<body>
+    <h1>PayPal Mass Payout</h1>
+    <form action="/payout" method="POST">
+        <div id="recipients">
+            <div class="recipient">
+                <label for="email">Receiver Email:</label>
+                <input type="email" name="recipients[0][email]" required>
+                <label for="amount">Amount (USD):</label>
+                <input type="number" name="recipients[0][amount]" step="0.01" required>
+            </div>
+        </div>
+        <button type="button" onclick="addRecipient()">Add Another Recipient</button>
+        <br><br>
+        <button type="submit">Send Payout</button>
+    </form>
+
+    <script>
+        let recipientCount = 1;
+
+        function addRecipient() {
+            const recipientsDiv = document.getElementById('recipients');
+            const newRecipientDiv = document.createElement('div');
+            newRecipientDiv.classList.add('recipient');
+            newRecipientDiv.innerHTML = `
+        <label for="email">Receiver Email:</label>
+        <input type="email" name="recipients[${recipientCount}][email]" required>
+        <label for="amount">Amount (USD):</label>
+        <input type="number" name="recipients[${recipientCount}][amount]" step="0.01" required>
+      `;
+            recipientsDiv.appendChild(newRecipientDiv);
+            recipientCount++;
+        }
+    </script>
+</body>
+
+</html>
