@@ -52,6 +52,11 @@ const createPayout = async (accessToken, items) => {
     return response.data;
 };
 
+app.use((req, res, next) => {
+    console.log(req.url);
+    next();
+})
+
 app.get('/', (req, res) => {
     res.render('index');
 });
@@ -77,6 +82,12 @@ app.post('/payout', async (req, res) => {
         res.render('error', { error: error.response ? error.response.data : error.message });
     }
 });
+
+app.post('/webhookresponse', async (req, res, next) => {
+    console.log('webhookresponse');
+    console.log(req.body);
+    res.sendStatus(200);
+})
 
 
 app.listen(PORT, () => {
