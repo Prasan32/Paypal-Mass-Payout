@@ -29,6 +29,7 @@ const getAccessToken = async () => {
             grant_type: 'client_credentials'
         }
     });
+    console.log(response.data.access_token);
     return response.data.access_token;
 };
 
