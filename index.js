@@ -84,8 +84,8 @@ app.post('/payout', async (req, res) => {
     }
 });
 
-app.post('/webhookresponse', async (req, res, next) => {
-    console.log('webhookresponse');
+app.post('/webhookresponses', async (req, res, next) => {
+    console.log('inside /webhookresponses controller');
     console.log(req.body);
     res.sendStatus(200);
 })
